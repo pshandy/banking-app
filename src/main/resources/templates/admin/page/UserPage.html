@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:insert="~{common/fragments :: header}"></head>
+
+<body class="container-xl pb-4">
+
+<!--  Навигация  -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a href="#" class="navbar-brand">Dream<b>Bank</b></a>
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- Элементы менюшки -->
+  <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+    <div class="navbar-nav">
+      <a href="#" class="nav-item nav-link">Пользователи</a>
+      <a href="#" class="nav-item nav-link">Встречи</a>
+    </div>
+  </div>
+</nav>
+
+<div class="card">
+  <div class="card-body">
+
+    <!-- Начало формы -->
+    <form th:action="@{/admin/user}" method="post" autocomplete="off" th:object="${user}">
+
+      <h4 th:text="'Пользователь # ' + ${user.id}"></h4>
+
+      <!-- Фамилия -->
+      <div class="form-group">
+        <label for="inputLastname">Фамилия</label>
+        <input type="text" class="form-control" id="inputLastname" th:field="*{lastname}" readonly />
+      </div>
+
+      <!-- Имя -->
+      <div class="form-group">
+        <label for="inputFirstname">Имя</label>
+        <input type="text" class="form-control" id="inputFirstname" th:field="*{firstname}"readonly />
+      </div>
+
+      <!-- Отчество -->
+      <div class="form-group">
+        <label for="inputLastname">Отчество</label>
+        <input type="text" class="form-control" id="inputMiddleName" th:field="*{middleName}" readonly />
+      </div>
+
+      <!-- Почта -->
+      <div class="form-group">
+        <label for="inputEmail">Почта</label>
+        <input type="email" class="form-control" id="inputEmail" th:field="*{email}" readonly />
+      </div>
+
+      <!-- Телефон -->
+      <div class="form-group">
+        <label for="inputPhone">Телефон</label>
+        <input type="tel" class="form-control" id="inputPhone" th:field="*{phone}" readonly />
+      </div>
+
+      <!-- Логин -->
+      <div class="form-group">
+        <label for="inputLogin">Логин</label>
+        <input type="text" class="form-control" id="inputLogin"  th:field="*{username}" readonly />
+      </div>
+
+      <!-- Пароль -->
+      <div class="form-group">
+        <label for="inputPassword">Пароль</label>
+        <input type="text" class="form-control" id="inputPassword"  th:field="*{password}" readonly />
+      </div>
+
+      <!-- Роль -->
+      <div class="form-group">
+        <label for="inputRole">Роль</label>
+        <input type="text" class="form-control" id="inputRole"  th:value="${#strings.equals(user.role, 'ROLE_USER')} ? 'Пользователь' : 'Администратор'" readonly />
+      </div>
+
+
+    </form>
+    <!-- Конец формы -->
+
+  </div>
+</div>
+<!-- Конец сохранения записи -->
+
+</body>
+
+<div th:insert="~{common/fragments :: body-bottom-scripts}"></div>
+
+</html>
