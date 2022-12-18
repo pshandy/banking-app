@@ -2,11 +2,13 @@ package com.rinate.bankingapp.domain.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.sql.Date;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class Transaction {
 
@@ -30,6 +32,14 @@ public class Transaction {
     @ManyToOne
     @JoinColumn(name = "sender_id", nullable = false)
     private Account sender;
+
+    public Transaction(Date date, String details, BigDecimal amount, Account recipient, Account sender) {
+        this.date = date;
+        this.details = details;
+        this.transferAmount = amount;
+        this.recipient = recipient;
+        this.sender = sender;
+    }
 
 
 }

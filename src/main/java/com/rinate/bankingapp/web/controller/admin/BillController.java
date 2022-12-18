@@ -41,15 +41,6 @@ public class BillController {
         model.addAttribute("accounts", accountRepository.findAll());
         return "/admin/panel/BillPanel";
     }
-
-    @GetMapping("/admin/bill_list/{id}")
-    public String showBillPage(Model model, @PathVariable("id") Integer id) {
-        model.addAttribute("bill", billRepository.findById(id).get());
-        model.addAttribute("bills", billRepository.findAll());
-        model.addAttribute("accounts", accountRepository.findAll());
-        return "/admin/page/BillPage";
-    }
-
     @PostMapping("/admin/bill")
     public ModelAndView saveBill(RedirectAttributes redirectAttributes, @ModelAttribute("bill") Bill bill) {
         try {

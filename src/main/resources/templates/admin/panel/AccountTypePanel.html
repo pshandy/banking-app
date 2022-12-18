@@ -29,10 +29,10 @@
             <td th:text="${item.id}">Id</td>
             <td th:text="${item.name}">Дебетовый</td>
             <td>
-                <form id="editForm" th:action="'/admin/accountType/' + ${item.id}" th:method="GET"></form>
-                <form id="deleteForm" th:action="'/admin/accountType/' + ${item.id}" th:method="DELETE"></form>
-                <a href="#" onclick="document.getElementById('editForm').submit()" class="edit" title="Изменить" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                <a href="#" onclick="document.getElementById('deleteForm').submit()" class="delete" title="Удалить" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                <form th:id="'editForm' + ${item.id}" th:action="'/admin/accountType/' + ${item.id}" th:method="GET"></form>
+                <form th:id="'deleteForm' + ${item.id}" th:action="'/admin/accountType/' + ${item.id}" th:method="DELETE"></form>
+                <a href="#" th:onclick=" 'document.getElementById(\'' + 'editForm' + ${item.id} + '\').submit()'" class="edit" title="Изменить" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                <a href="#" th:onclick=" 'document.getElementById(\'' + 'deleteForm' + ${item.id} + '\').submit()'" class="delete" title="Удалить" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
             </td>
         </tr>
         </tbody>

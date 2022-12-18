@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class UserController {
+public class UsersController {
 
     @Autowired
     private UserRepository userRepository;

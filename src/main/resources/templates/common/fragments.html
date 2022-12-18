@@ -15,24 +15,54 @@
 
 <body>
 
-<!--  Навигация  -->
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light">
-    <a href="#" class="navbar-brand">Dream<b>Bank</b></a>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <!-- Элементы менюшки -->
-    <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-        <div class="navbar-nav">
-            <a href="/admin/user" class="nav-item nav-link">Пользователи</a>
-            <a href="/admin/appointment" class="nav-item nav-link">Встречи</a>
-            <a href="/admin/account" class="nav-item nav-link">Банковские счета</a>
-            <a href="/admin/accountType" class="nav-item nav-link">Типы счётов</a>
-            <a href="/admin/transaction" class="nav-item nav-link">Транзакции</a>
-            <a href="/admin/bill" class="nav-item nav-link">Счета</a>
+<!--  Админ Навигация  -->
+<div th:fragment="navbar">
+
+    <nav sec:authorize="hasAuthority('ROLE_ADMIN')" class="navbar navbar-expand-lg navbar-light">
+      <a href="#" class="navbar-brand">Dream<b>Bank</b></a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+     <!-- Элементы менюшки -->
+      <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+          <div class="navbar-nav">
+              <a href="/admin/user" class="nav-item nav-link">Пользователи</a>
+               <a href="/admin/appointment" class="nav-item nav-link">Встречи</a>
+               <a href="/admin/account" class="nav-item nav-link">Банковские счета</a>
+               <a href="/admin/accountType" class="nav-item nav-link">Типы счётов</a>
+               <a href="/admin/transaction" class="nav-item nav-link">Транзакции</a>
+               <a href="/admin/bill" class="nav-item nav-link">Счета</a>
+              <a href="/logout" class="nav-item nav-link">Выйти</a>
+           </div>
+       </div>
+    </nav>
+
+    <nav sec:authorize="isAnonymous()" class="navbar navbar-expand-lg navbar-light">
+        <a href="#" class="navbar-brand">Dream<b>Bank</b></a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+    <!--  Юзер Навигация  -->
+    <nav sec:authorize="hasAuthority('ROLE_USER')" class="navbar navbar-expand-lg navbar-light">
+        <a href="/home" class="navbar-brand">Dream<b>Bank</b></a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Элементы менюшки -->
+        <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+            <div class="navbar-nav">
+                <a href="/home" class="nav-item nav-link">Главная</a>
+                <a href="/user/profile" class="nav-item nav-link">Профиль</a>
+                <a href="/user/bill" class="nav-item nav-link">Счета</a>
+                <a href="/account/transfer" class="nav-item nav-link">Перевести</a>
+                <a href="/logout" class="nav-item nav-link">Выйти</a>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+
+</div>
 
 <!--  Скрипты внизу  -->
 <div th:fragment="body-bottom-scripts">
